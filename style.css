@@ -361,7 +361,7 @@ h1 {
 .fireworks-text {
     font-family: 'Sacramento', cursive; /* A more decorative font for "HBD To You" */
     font-size: 4em; /* Reduced font size for 3 lines */
-    color: #ffd700; /* Gold color for fireworks text */
+    color: #54ebff; /* Gold color for fireworks text */
     text-shadow: 0 0 10px #ffcc00, 0 0 20px #ff9900, 0 0 30px #ff6600, 0 0 40px #ff3300; /* Glow effect */
     animation: fireworksTextPop 1.5s forwards ease-out, fireworksTextGlow 2s infinite alternate;
     opacity: 0; /* Start hidden for animation */
