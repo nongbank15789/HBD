@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สุขสันต์วันเกิดค้าบบบ!</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="candle-page" class="page active">
+        <h1>อธิษฐานแล้วเป่าเทียนเลยนะ!</h1>
+        <p id="mic-instruction" style="color: white; font-size: 1.2em; margin-top: 10px;">
+            กรุณาอนุญาตให้เข้าถึงไมโครโฟน แล้วลองเป่าเทียนดูนะ!
+        </p>
+        <div class="glow" id="glow"></div>
+        <div id="candle">
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div id="top">
+                <div class="smoke"></div>
+                <div class="smoke"></div>
+                <div class="smoke"></div>
+                <div id="knot"></div>
+                <div class="burn" id="flame"></div>
+            </div>
+        </div>
+        <p id="post-blow-message" style="display:none; color: white; font-size: 1.5em; margin-top: 20px;">
+            ขอให้ความปรารถนาของแฟนเป็นจริงนะ
+        </p>
+        <button id="read-letter-btn" style="display:none;">ต่อไป...</button>
+    </div>
+
+    <div id="love-letter-page" class="page">
+        <div class="letter-content">
+            <p>แฟนของเค้า,</p>
+            <p>วันเกิดปีนี้ เค้าอยากให้คำอธิษฐานของแฟนเป็นจริงนะ</p>
+            <p>ส่วนเค้าก็ขอให้แฟน มีความสุขเยอะๆ เลยอยู่กับเค้าให้มีความสุขยิ้มเยอะๆ และมีเสียงหัวเราะบ่อยๆนะ ไม่เครียด ไม่กังวลอะไรมากมายนะ</p>
+            <p>เค้าขอให้ปีนี้เป็นปีที่ดีสำหรับแฟน และสุขภาพแข็งแรง แล้วจะได้อยู่กับเค้าไปนานๆนะ😘</p>
+            <p>เค้ารักแฟนที่สุดเลย~❤️</p>
+            <p>จาก,</p>
+            <p>แฟนของหนูงายยย</p>
+        </div>
+        <button id="back-to-candle-btn">ต่อไป</button>
+    </div>
+
+    <div id="fireworks-display">
+        <span class="fireworks-text">Happy Birthday<br>to<br>You</span>
+    </div>
+
+    <audio id="background-music" loop autoplay>
+        <source src="Happy Birthday Piano Version.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <audio id="blow-sound" src="blow.mp3" preload="auto"></audio> 
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

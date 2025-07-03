@@ -1,0 +1,397 @@
+@import url("https://fonts.googleapis.com/css?family=Sacramento");
+@import url("https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;700&display=swap"); /* เพิ่ม Font Promt สำหรับภาษาไทย */
+
+body {
+    background-color: #212a52;
+    margin: 0;
+    overflow: hidden; /* ป้องกัน scrollbar เมื่อเปลี่ยนหน้า */
+    display: flex; /* ใช้ flexbox จัดกึ่งกลางหน้าเว็บใน body */
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'Prompt', sans-serif; /* ตั้งค่า font หลัก */
+}
+
+/* สไตล์สำหรับหน้าแต่ละหน้า */
+.page {
+    position: absolute; /* ทำให้ซ้อนทับกันได้ */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box; /* ให้ padding ไม่ดันขนาดเกิน */
+}
+
+/* ซ่อนหน้าเริ่มต้น */
+.page:not(.active) {
+    display: none;
+}
+
+h1 {
+    /* position: fixed; */ /* ลบ fixed ออกเพื่อให้จัดวางกับ flexbox ได้ */
+    margin: 0 auto;
+    /* bottom: 5%; */ /* ลบ bottom ออก */
+    left: 0;
+    right: 0;
+    width: 100%; /* ใช้ width: 100% แทน 12em */
+    text-align: center;
+    font-size: 2.5em; /* เพิ่มขนาดตัวอักษรเล็กน้อย */
+    font-weight: 100;
+    font-family: "Sacramento", cursive; /* เพิ่ม cursive เพื่อความเข้ากันได้ */
+    letter-spacing: 0.1em;
+    color: white;
+    text-shadow: 0 0 20px black;
+    opacity: 0.9; /* เพิ่ม opacity */
+    margin-bottom: 50px; /* เพิ่มระยะห่างด้านล่าง */
+}
+
+/* สไตล์สำหรับปุ่ม */
+#read-letter-btn, #back-to-candle-btn {
+    padding: 15px 30px;
+    margin-top: 30px;
+    background-color: #ff69b4; /* สีชมพูหวานๆ */
+    color: white;
+    border: none;
+    border-radius: 50px; /* ทำให้ปุ่มโค้งมน */
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    font-family: 'Prompt', sans-serif;
+}
+
+#read-letter-btn:hover, #back-to-candle-btn:hover {
+    background-color: #ff4a9a;
+    transform: translateY(-3px); /* ยกขึ้นเล็กน้อยเมื่อ hover */
+}
+
+/* สไตล์สำหรับหน้าจดหมายรัก */
+#love-letter-page {
+    background-color: rgba(255, 255, 255, 0.95); /* พื้นหลังโปร่งแสงเล็กน้อย */
+    color: #333;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    max-width: 800px; /* จำกัดความกว้างของจดหมาย */
+    height: auto; /* ปรับความสูงตามเนื้อหา */
+    max-height: 90vh; /* จำกัดความสูงสูงสุด */
+    overflow-y: auto; /* ให้ scroll ได้ถ้าเนื้อหายาว */
+    font-size: 1.1em;
+    text-align: left; /* จัดข้อความชิดซ้าย */
+    line-height: 1.8; /* ระยะห่างบรรทัด */
+}
+
+#love-letter-page h1 {
+    color: #ff69b4; /* สีหัวข้อจดหมาย */
+    font-family: 'Sacramento', cursive;
+    font-size: 3em; /* ขนาดใหญ่ขึ้น */
+    margin-bottom: 20px;
+    text-align: center;
+    text-shadow: none; /* ลบ shadow */
+}
+
+#love-letter-page p {
+    margin-bottom: 1em;
+    color: #555;
+}
+
+
+/* ปรับตำแหน่งเทียนเพื่อให้จัดกึ่งกลางได้ดีขึ้น */
+#candle {
+    position: relative; /* เปลี่ยนเป็น relative เพื่อให้จัดกึ่งกลางได้ง่ายขึ้นกับ flexbox */
+    left: auto; /* ลบค่า left เก่าออก */
+    bottom: auto; /* ลบค่า bottom เก่าออก */
+    width: 1.5em;
+    height: 10em;
+    overflow: hidden;
+    margin: 0 auto; /* จัดกึ่งกลางด้วย margin auto */
+}
+
+#glow {
+    position: absolute;
+    left: calc(50% - .1em); /* ให้ยังคงอยู่ที่เดิม */
+    bottom: calc(35% + 9em);
+    width: 0.2em;
+    height: 0.2em;
+    border-radius: 100%;
+    opacity: 0.15;
+}
+
+/* เพิ่ม responsive design สำหรับมือถือ */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.8em;
+    }
+    #love-letter-page h1 {
+        font-size: 2.5em;
+    }
+    #read-letter-btn, #back-to-candle-btn {
+        font-size: 1em;
+        padding: 12px 25px;
+    }
+    #love-letter-page {
+        padding: 20px;
+        font-size: 1em;
+    }
+}
+
+
+/* โค้ดเดิมที่เหลือไว้ (ด้านล่าง) */
+#candle::before {
+    position: absolute;
+    bottom: 0;
+    left: 8%;
+    content: "";
+    width: 84%;
+    height: 80%;
+    background: linear-gradient(whitesmoke 0, #1e1934 125%);
+    border-radius: 0.25em;
+    box-sizing: border-box;
+    border: 1px solid #333;
+}
+
+#top {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 2em;
+    background-color: transparent;
+}
+#top #knot {
+    position: absolute;
+    bottom: 0;
+    left: calc(50% - .05em);
+    height: 0.5em;
+    width: 0.1em;
+    background-color: #0f3146;
+}
+#top .smoke {
+    position: absolute;
+    opacity: 0;
+    border-radius: 100%;
+}
+#top .smoke:nth-child(1) {
+    bottom: 0.1em;
+    left: calc(50% - .5em);
+    height: 0.5em;
+    width: 0.5em;
+    background-color: silver;
+}
+#top .smoke:nth-child(2) {
+    bottom: 0.6em;
+    left: 50%;
+    height: 0.6em;
+    width: 0.6em;
+    background-color: lightgray;
+    animation-delay: 0.2s;
+}
+#top .smoke:nth-child(3) {
+    bottom: 1.1em;
+    left: 20%;
+    height: 0.3em;
+    width: 0.3em;
+    background-color: whitesmoke;
+    animation-delay: 0.3s;
+}
+#top #flame {
+    position: absolute;
+    bottom: 0.15em;
+    width: 1.5em;
+    height: 1.6em;
+    background-color: #ffee86;
+    border-radius: 100%;
+    box-shadow: inset 0 0 0 0.1em #ffee86;
+    transform: rotateY(30deg);
+    cursor: pointer;
+}
+#top #flame::after {
+    position: absolute;
+    content: "";
+    width: 0.7em;
+    height: 0.9em;
+    bottom: 10%;
+    left: calc(50% - .35em);
+    background-color: #ff3200;
+    border-radius: 100%;
+    animation: burnInner 1.5s ease-in-out infinite;
+}
+#top #flame:hover {
+    transition: all 0.1s ease-in-out;
+    background-color: yellow;
+}
+#top #flame:hover::after {
+    background-color: red;
+}
+
+@keyframes glow {
+    0% {
+        box-shadow: 0 0 1.5em 2.2em rgba(255, 246, 162, 0.75);
+    }
+    50% {
+        box-shadow: 0 0 1.5em 2em rgba(255, 246, 162, 0.6);
+    }
+    100% {
+        box-shadow: 0 0 1.5em 2.2em rgba(255, 246, 162, 0.75);
+    }
+}
+@keyframes burn {
+    0% {
+        height: 1.7em;
+        transform: rotateY(30deg);
+    }
+    50% {
+        height: 1.3em;
+        transform: rotateY(0deg);
+        opacity: 0.9;
+    }
+    100% {
+        height: 1.7em; /* แก้จาก 1.7m เป็น 1.7em */
+        transform: rotateY(30deg);
+    }
+}
+@keyframes burnInner {
+    0% {
+        height: 0.9em;
+        transform: rotateX(0deg);
+    }
+    50% {
+        height: 0.8em;
+        transform: rotateX(30deg);
+    }
+    100% {
+        height: 0.9em;
+        transform: rotateX(0deg);
+    }
+}
+@keyframes puff {
+    100% {
+        transform: rotateY(-30deg);
+        opacity: 0;
+    }
+}
+@keyframes puff-bubble {
+    0% {
+        opacity: 0;
+        transform: scale(1, 1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.2, 1.2);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.8, 0.8);
+    }
+}
+.glow {
+    animation: glow 3s ease-in-out infinite;
+}
+
+.burn {
+    animation: burn 1.5s ease-in-out infinite;
+}
+
+.puff {
+    animation: puff 0.3s ease-in-out forwards;
+}
+
+.puff-bubble {
+    animation: puff-bubble 0.75s ease-in-out forwards;
+}
+
+.stripe {
+    position: absolute;
+    left: -0.25em;
+    width: 2em;
+    height: 0.25em;
+    background-color: #ff4b6f;
+    transform: rotate(25deg);
+    border-radius: 100%;
+    box-shadow: 1px 1px 0 1px rgba(0, 0, 0, 0.25);
+}
+
+.stripe:nth-child(1) {
+    top: 2.7em;
+    opacity: 1; /* Adjusted to 1 */
+}
+
+.stripe:nth-child(2) {
+    top: 4.2em;
+    opacity: 0.9;
+}
+
+.stripe:nth-child(3) {
+    top: 5.7em;
+    opacity: 0.7333333333;
+}
+
+.stripe:nth-child(4) {
+    top: 7.2em;
+    opacity: 0.65;
+}
+
+.stripe:nth-child(5) {
+    top: 8.7em;
+    opacity: 0.6;
+}
+
+/* New CSS for Fireworks Display */
+#fireworks-display {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Dark overlay */
+    display: flex;
+    flex-direction: column; /* Added for vertical alignment of lines */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensure it's on top */
+    opacity: 0; /* Initially hidden */
+    pointer-events: none; /* Allow clicks to pass through when hidden */
+    transition: opacity 0.5s ease-in-out; /* Smooth fade in/out */
+}
+
+.fireworks-text {
+    font-family: 'Sacramento', cursive; /* A more decorative font for "HBD To You" */
+    font-size: 4em; /* Reduced font size for 3 lines */
+    color: #ffd700; /* Gold color for fireworks text */
+    text-shadow: 0 0 10px #ffcc00, 0 0 20px #ff9900, 0 0 30px #ff6600, 0 0 40px #ff3300; /* Glow effect */
+    animation: fireworksTextPop 1.5s forwards ease-out, fireworksTextGlow 2s infinite alternate;
+    opacity: 0; /* Start hidden for animation */
+    line-height: 1.2; /* Adjust line height for better spacing */
+    text-align: center; /* Center the text lines */
+}
+
+@keyframes fireworksTextPop {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    70% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes fireworksTextGlow {
+    0% {
+        text-shadow: 0 0 10px #ffd700, 0 0 20px #ffcc00, 0 0 30px #ff9900, 0 0 40px #ff6600;
+    }
+    50% {
+        text-shadow: 0 0 15px #ffd700, 0 0 25px #ffcc00, 0 0 35px #ff9900, 0 0 45px #ff3300, 0 0 50px #ff0000;
+    }
+    100% {
+        text-shadow: 0 0 10px #ffd700, 0 0 20px #ffcc00, 0 0 30px #ff9900, 0 0 40px #ff6600;
+    }
+}
